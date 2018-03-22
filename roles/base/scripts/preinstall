@@ -1,0 +1,9 @@
+#!/bin/bash -ex
+
+apt update
+apt install -y nvidia-driver nvidia-smi mesa-utils
+apt install -y nvidia-cuda-toolkit nvidia-cuda-dev nvidia-cuda-mps libvdpau-doc libcupti-dev opencl-clhpp-headers-doc
+apt install -y htop iotop
+apt install -y cmake g++
+
+

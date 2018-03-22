@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# docker for debian stretch
+apt-get update
+sudo apt-get install -y \
+     apt-transport-https \
+     ca-certificates \
+     curl \
+     gnupg2 \
+     software-properties-common
+
+# mw this one was modified from official instructions
+curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+apt-key fingerprint 0EBFCD88
+
+# mw this one was modified from official instructions
+echo "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable" > /etc/apt/sources.list.d/docker.list
+
+apt-get update
+apt-get install docker-ce
+docker run hello-world
+
+# nvidia docker installation for debian stretch
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/debian9/amd64/nvidia-docker.list | \
+  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update
+sudo apt-get install -y nvidia-docker2
+sudo pkill -SIGHUP dockerd
+
